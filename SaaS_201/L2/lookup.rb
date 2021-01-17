@@ -43,11 +43,12 @@ def resolve(dns_records, lookup_chain, domain)
 
       # else we need to recursively keep checking untill we reach to an IP_address
     elsif rec_type == "CNAME"
-      resolve(dns_records, lookup_chain, dest)
+      return resolve(dns_records, lookup_chain, dest)
     end
   else
     lookup_chain = []
-    lookup_chain.push("Error: record not found for gmil.com")
+    lookup_chain.push("Error: record not found for #{domain}")
+    return lookup_chain
   end
 end
 
