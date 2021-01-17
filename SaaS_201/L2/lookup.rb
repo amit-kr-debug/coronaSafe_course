@@ -47,7 +47,7 @@ def resolve(dns_records, lookup_chain, domain)
     end
   else
     lookup_chain = []
-    lookup_chain.push("Error: record not found for #{domain}" )
+    lookup_chain.push("Error: record not found for #{domain}")
     return lookup_chain
   end
 end
