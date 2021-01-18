@@ -56,8 +56,8 @@ class TodosList
 
   def to_displayable_list
     todo_list = []
-    @todos.map do |todo|
-      todo_list.push(todo.to_displayable_string)
+    todo_list = @todos.map do |todo|
+      todo.to_displayable_string
     end
     todo_list.join("\n")
   end
