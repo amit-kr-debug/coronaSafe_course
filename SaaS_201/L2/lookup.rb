@@ -16,11 +16,8 @@ def parse_dns(dns_raw)
 
   dns_dict = {}
 
-
   # storing data of lines in a array by splitting
-  dns_data = dns_filtered.map do |line|
-    line.split(",").map { |word| word.strip() }
-  end
+  dns_data = dns_filtered.map {|line| line.split(",").map { |word| word.strip() } }
 
   # storing the data in a map with key as domanin name and values is an array
   # that contains record type at its 0th index and destination address at 1st index

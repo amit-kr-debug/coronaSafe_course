@@ -20,16 +20,9 @@ class Todo
   end
 
   def to_displayable_string
-    if @completed
-      str = "[X]"
-    else
-      str = "[ ]"
-    end
-    if self.due_today?
-      str += "#{@text}"
-    else
-      str += "#{@text} #{@due_date}"
-    end
+    display_status = completed ? "[X]" : "[ ]"
+    display_date = due_today? ? nil : due_date
+    "#{display_status} #{todo_text} #{display_date}"
   end
 end
 
