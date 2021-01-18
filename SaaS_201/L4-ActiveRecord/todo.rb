@@ -15,15 +15,15 @@ class Todo < ActiveRecord::Base
     all.map {|todo| todo.to_displayable_string }
   end
 
-  def self.overdue?
+  def self.overdue
     all.where("due_date < ?", Date.today)
   end
 
-  def self.due_today?
+  def self.due_today
     all.where("due_date = ?", Date.today)
   end
 
-  def self.due_later?
+  def self.due_later
     all.where("due_date > ?", Date.today)
   end
 
@@ -31,15 +31,15 @@ class Todo < ActiveRecord::Base
     puts "My Todo-list\n\n"
 
     puts "Overdue\n"
-    puts overdue?.to_displayable_list
+    puts overdue.to_displayable_list
     puts "\n\n"
 
     puts "Due Today\n"
-    puts due_today?.to_displayable_list
+    puts due_today.to_displayable_list
     puts "\n\n"
 
     puts "Due Later\n"
-    puts due_later?.to_displayable_list
+    puts due_later.to_displayable_list
     puts "\n\n"
   end
 
