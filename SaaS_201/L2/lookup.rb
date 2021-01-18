@@ -15,16 +15,16 @@ def parse_dns(dns_raw)
   dns_filtered = dns_raw.filter { |line| line.length > 1 and line[0] != "#" }
 
   dns_dict = {}
-  dns_data = []
+
 
   # storing data of lines in a array by splitting
-  dns_filtered.map do |line|
-    dns_data.push(line.split(",").map { |word| word.strip() })
+  dns_data = dns_filtered.map do |line|
+    line.split(",").map { |word| word.strip() }
   end
 
   # storing the data in a map with key as domanin name and values is an array
   # that contains record type at its 0th index and destination address at 1st index
-  dns_data.map { |line| dns_dict[line[1]] = [line[0], line[2]] }
+  dns_data.map { |line| dns_dict[line[1]] = { :rec_type => line[0], :dest => line[2] } }
 
   return dns_dict
 end
@@ -32,8 +32,8 @@ end
 def resolve(dns_records, lookup_chain, domain)
   # checking if the domain exists in the map or not
   if dns_records[domain] != nil
-    rec_type = dns_records[domain][0]
-    dest = dns_records[domain][1]
+    rec_type = dns_records[domain][:rec_type]
+    dest = dns_records[domain][:dest]
 
     lookup_chain.push(dest)
 
