@@ -20,9 +20,9 @@ class Todo
   end
 
   def to_displayable_string
-    display_status = completed ? "[X]" : "[ ]"
-    display_date = due_today? ? nil : due_date
-    "#{display_status} #{todo_text} #{display_date}"
+    display_status = @completed ? "[X]" : "[ ]"
+    display_date = due_today? ? nil : @due_date
+    "#{display_status} #{@text} #{display_date}"
   end
 end
 
@@ -48,7 +48,6 @@ class TodosList
   end
 
   def to_displayable_list
-    todo_list = []
     todo_list = @todos.map{|todo| todo.to_displayable_string}
     todo_list.join("\n")
   end
